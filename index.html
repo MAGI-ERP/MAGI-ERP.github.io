@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>WinMAGI API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;vb&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="vb">vb</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -225,7 +222,62 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#pre-requisites" class="toc-h1 toc-link" data-title="Pre-requisites">Pre-requisites</a>
+          </li>
+          <li>
+            <a href="#important-information" class="toc-h1 toc-link" data-title="Important information">Important information</a>
+          </li>
+          <li>
+            <a href="#registering-the-library" class="toc-h1 toc-link" data-title="Registering the library">Registering the library</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#important-api-details" class="toc-h1 toc-link" data-title="Important API Details">Important API Details</a>
+          </li>
+          <li>
+            <a href="#factories" class="toc-h1 toc-link" data-title="Factories">Factories</a>
+          </li>
+          <li>
+            <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#generate-the-customer-object" class="toc-h2 toc-link" data-title="Generate the Customer object">Generate the Customer object</a>
+                  </li>
+                  <li>
+                    <a href="#get-customers" class="toc-h2 toc-link" data-title="Get Customers">Get Customers</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-customer" class="toc-h2 toc-link" data-title="Create a Customer">Create a Customer</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-customer" class="toc-h2 toc-link" data-title="Update a Customer">Update a Customer</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-customer" class="toc-h2 toc-link" data-title="Delete a Customer">Delete a Customer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#customer-addresses" class="toc-h1 toc-link" data-title="Customer Addresses">Customer Addresses</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#generate-the-customer-object-2" class="toc-h2 toc-link" data-title="Generate the Customer object">Generate the Customer object</a>
+                  </li>
+                  <li>
+                    <a href="#get-customer-addresses" class="toc-h2 toc-link" data-title="Get Customer Addresses">Get Customer Addresses</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-customer-address" class="toc-h2 toc-link" data-title="Create a Customer Address">Create a Customer Address</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-customer-address" class="toc-h2 toc-link" data-title="Update a Customer Address">Update a Customer Address</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-customer-address" class="toc-h2 toc-link" data-title="Delete a Customer Address">Delete a Customer Address</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
@@ -246,7 +298,6 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -254,41 +305,692 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the WinMAGI API! You can use our API to access your WinMAGI data from third-party applications. With this API, 
+you can create, update, and delete customers and shipping addresses, create sales orders, and query all sorts 
+of data in your WinMAGI database.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>If there is data or a function you would like exposed in the API, contact us at <a href="mailto:support@magi-erp.com">support@magi-erp.com</a> </p>
+<h1 id='pre-requisites'>Pre-requisites</h1>
+<ul>
+<li>MAGI License Server version 101 or later</li>
+<li>WinMAGI build V821332 or later</li>
+<li>Register the WinMAGI.exe</li>
+</ul>
+<h1 id='important-information'>Important information</h1>
+<ul>
+<li>Each instance of WinMAGI.ApiBase consumes a limited user.</li>
+<li>Each instance of WinMAGI.ApiBase will be present in the MAGI License Server for management purposes.</li>
+<li>After installing a new WinMAGI build, it may be necessary to unregister and register the WinMAGI.exe again</li>
+<li>Supported fields and validations, in most cases, come from your WinMAGI System Dictionary. 
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<ul>
+<li>It would be wise to create a wrapper that limits what third-party applications can do with the API.</li>
+</ul></li>
+</ul>
+<h1 id='registering-the-library'>Registering the library</h1>
+<blockquote>
+<p>You must first register the WinMAGI API library on the machine(s) that will consume it.</p>
+</blockquote>
+
+<p>Open an elevated command prompt, navigate to the directory containing your WinMAGI.exe, and type winmagi.exe /regserver</p>
+
+<p>You may unregister in the same way using the /unregserver flag.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight vb tab-vb"><code><span class="c1">' Initialize the object, connect with the license server, validate the license and available users</span>
+<span class="c1">' objWinMAGI.InitOleObject("&lt;path\to\winmagi&gt;", "&lt;DATA directory name&gt;")</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="c1">' InitOleObject takes a few seconds as it communicates with the MAGI License Server asynchronously.</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<span class="k">Dim</span> <span class="nv">objWinMAGI</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">"WinMAGI.ApiBase"</span><span class="p">)</span>
+<span class="k">Dim</span> <span class="nv">lnResult</span> <span class="ow">As</span> <span class="n">Int16</span> <span class="o">=</span> <span class="n">objWinMAGI</span><span class="p">.</span><span class="n">InitOleObject</span><span class="p">(</span><span class="s">"c:\winmagi"</span><span class="p">,</span> <span class="s">"DATA"</span><span class="p">)</span>  
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<span class="k">If</span> <span class="n">lnResult</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">Then</span>
+
+    <span class="c1">' Wait for the property lLoginResponseReceived to indicate successful login to the MAGI License Server</span>
+    <span class="k">Do</span> <span class="k">While</span> <span class="n">objWinMAGI</span><span class="p">.</span><span class="n">lLoginResponseReceived</span> <span class="o">=</span> <span class="k">False</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="k">Loop</span>
+
+    <span class="nb">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">"Successful login!"</span><span class="p">)</span>
+
+    <span class="c1">' Do stuff</span>
+<span class="k">Else</span>
+    <span class="c1">' Error with the login or authentication process</span>
+    <span class="nb">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">objWinMAGI</span><span class="p">.</span><span class="n">LastErrorText</span><span class="p">)</span>
+<span class="k">End</span> <span class="k">If</span>
+</code></pre>
+<p>Authentication involves communication with your WinMAGI License Server to obtain license data including users 
+and authorized modules.</p>
+
+<p>Upon successful login to the MAGI License Server, your API user will be shown in the concurrent users list. </p>
+
+<p>Integration with the license server enables visibility into the processes that may be accessing the WinMAGI data. 
+This is useful for having the ability to block API users from accessing the system WinMAGI maintenance and build upgrades.</p>
+
+<p>Each instance of ApiBase consumes one concurrent Limited User rather than a full user seat.</p>
+
+<p>One Limited User should be sufficient to interface with WinMAGI from your middleware. </p>
+
+<p>However, if you need multi-threading 
+capabilities or would like to run instances from multiple machines, additional Limited Users may be purchased.</p>
+<h1 id='important-api-details'>Important API Details</h1>
+<ul>
+<li><p>Data is queried by passing a set of fields in JSON format. </p>
+
+<ul>
+<li>Supported fields are any fields in your WinMAGI System Dictionary for the table you are querying.</li>
+<li>Sales Orders have a limited set of supported fields.</li>
+</ul></li>
+<li><p>Wildcards (% and _) are supported.</p></li>
+<li><p>JSON fields MUST be all CAPS</p></li>
+<li><p>Multiple fields will be ANDed to find a result that matches all criteria provided</p></li>
+<li><p>Returns</p>
+
+<ul>
+<li>Results found: a JSON array </li>
+<li>No results found: An empty JSON object</li>
+<li>Error: An empty string. Query objCustomer.LastErrorText for details.</li>
+</ul></li>
+<li><p>Validations</p>
+
+<ul>
+<li>Validation of values for an entity is controlled by the &quot;When&quot; and &quot;Valid&quot; methods in your WinMAGI System Dictionary for the table in question.</li>
+<li>Any field in the dictionary may be supplied in your JSON-formatted object.
+
+<ul>
+<li>Only select fields are supported for Sales Orders.</li>
+</ul></li>
+<li>If a supplied field&#39;s &quot;When&quot; method evaluates to false, no changes will be made to the object.</li>
+<li>If the value you provide results in the field&#39;s &quot;Valid&quot; method evaluating to false, no changes will be made. </li>
+<li>Details of validation failure will be in the LastErrorText property.</li>
+</ul></li>
+</ul>
+<h1 id='factories'>Factories</h1>
+<p>Each instance of WinMAGI.ApiBase can generate one instance of each entity type.</p>
+
+<p>For example, you may call objWinMAGI.mthGetCustomerObject() and objWinMAGI.mthGetSalesOrderObject() which will 
+ allow you to create a customer and an order with one authenticated session while consuming only a single limited user.</p>
+
+<p>Our intention is that you leave objWinMAGI in memory and logged into the license server as long as possible.</p>
+<h1 id='customers'>Customers</h1>
+<p>The customer object enables Customer and Customer Address actions that will run through the WinMAGI code for validation, 
+consistency, and concurrency with WinMAGI users.</p>
+<h2 id='generate-the-customer-object'>Generate the Customer object</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">objCustomer</span> <span class="o">=</span> <span class="n">objWinMAGI</span><span class="p">.</span><span class="n">mthGetCustomerObject</span><span class="p">()</span>
+
+<span class="c1">' Errors will return null, and a message will be present in objWinMAGI.LastErrorText</span>
+</code></pre>
+<p>Grab a customer object from the Customer Factory</p>
+<h2 id='get-customers'>Get Customers</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomers</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Get all customers</span>
+<span class="n">jsonCustomers</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthFindCustomer</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">%</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+
+<span class="c1">' Get customer with company exactly matching Walmart (case-insensitive)</span>
+<span class="n">jsonCustomers</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthFindCustomer</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">COMPANY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">Walmart</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+
+<span class="c1">' Get customer with company exactly matching Walmart and city matching Bentonville</span>
+<span class="n">jsonCustomers</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthFindCustomer</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">COMPANY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">Walmart</span><span class="se">""</span><span class="s">, 
+</span><span class="se">""</span><span class="s">CITY</span><span class="se">""</span><span class="s">: </span><span class="se">""</span><span class="s">Bentonville</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>    
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>This method returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WALMART"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"COMPANY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Walmart"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bentonville"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AR"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"72712"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"406 S Walton Blvd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTOMER table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BESTBUY"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"COMPANY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best Buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grand Rapids"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49546"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2650 E Belt Line SE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTOMER table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all customers matching JSON-formatted criteria you provide.</p>
+
+<p>Fields MUST be UPPER CASE</p>
+<h3 id='json-formatted-parameters'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>false</td>
+<td>If supplied, return customers matching this CUSTID</td>
+</tr>
+<tr>
+<td>COMPANY</td>
+<td>false</td>
+<td>If supplied, return customers matching this Company</td>
+</tr>
+<tr>
+<td>ANY_OTHER_FIELD</td>
+<td>false</td>
+<td>Any WinMAGI field in the CUSTOMER table</td>
+</tr>
+</tbody></table>
+
+<p>Multiple fields in the query will return results matching ALL supplied values. </p>
+
+<aside class="success">
+Wildcards are supported. % for multiple characters and _ for single character.
+</aside>
+<h2 id='create-a-customer'>Create a Customer</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomer</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Create a customer</span>
+<span class="n">jsonCustomer</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthCreateCustomer</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">, 
+</span><span class="se">""</span><span class="s">COMPANY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI Software</span><span class="se">""</span><span class="s">,</span><span class="se">""</span><span class="s">CITY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">Grand Rapids</span><span class="se">""</span><span class="s">, </span><span class="se">""</span><span class="s">STATE</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MI</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>The above command returns the newly-created JSON-formatted customer object structured like this if successful:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"COMPANY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI Software"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grand Rapids"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTOMER table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Unsuccessful attempts return an empty string and assign details to objCustomer.LastErrorText</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Create a WinMAGI customer.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<ul>
+<li><p>Only one customer can be created with each call to mthCreateCustomer</p></li>
+<li><p>Fields you may provide can be found in the WinMAGI System Dictionary for the CUSTOMER table on the Fields tab</p></li>
+<li><p>CUSTID must be unique and UPPER CASE</p></li>
+<li><p>Successful creation returns the complete customer object in JSON. Any other result indicates an error. Check LastErrorText.</p></li>
+<li><p>Fields MUST be UPPER CASE</p></li>
+<li><p>Validations from your WinMAGI System Dictionary will be evaluated</p></li>
+</ul>
+<h3 id='json-formatted-parameters-2'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>true</td>
+<td>Unique, Upper-cased string customer ID</td>
+</tr>
+<tr>
+<td>COMPANY</td>
+<td>false</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>false</td>
+<td>Company address</td>
+</tr>
+<tr>
+<td>CITY</td>
+<td>false</td>
+<td>Company city</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td>false</td>
+<td>Company state</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>false</td>
+<td>Company zip</td>
+</tr>
+<tr>
+<td>ANY_OTHER_FIELD</td>
+<td>false</td>
+<td>Any WinMAGI field in the CUSTOMER table</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-customer'>Update a Customer</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomer</span> <span class="ow">As</span> <span class="kt">String</span>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<span class="c1">' Update an existing customer</span>
+<span class="c1">' This code updates the CITY to Traverse City for customer MAGI</span>
+<span class="n">jsonCustomer</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthUpdateCustomer</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">,</span><span class="se">""</span><span class="s">CITY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">Traverse City</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>The above command returns the JSON-formatted customer object structured like this if successful:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"COMPANY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI Software"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Traverse City"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTOMER table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Unsuccessful attempts return an empty string and assign details to objCustomer.LastErrorText</p>
+</blockquote>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<p>Update a WinMAGI customer.</p>
+
+<ul>
+<li><p>CUSTID is REQUIRED and must be UPPER CASE</p></li>
+<li><p>Only one customer can be created with each call</p></li>
+<li><p>Fields you may provide can be found in the WinMAGI System Dictionary for the CUSTOMER table on the Fields tab</p></li>
+<li><p>Successful creation returns the complete customer object in JSON. Any other result indicates an error. Check LastErrorText.</p></li>
+<li><p>Fields MUST be UPPER CASE</p></li>
+<li><p>Validations from your WinMAGI System Dictionary will be evaluated</p></li>
+</ul>
+<h3 id='json-formatted-parameters-3'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>true</td>
+<td>Existing, Upper-cased string WinMAGI customer ID</td>
+</tr>
+<tr>
+<td>COMPANY</td>
+<td>false</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>false</td>
+<td>Company address</td>
+</tr>
+<tr>
+<td>CITY</td>
+<td>false</td>
+<td>Company city</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td>false</td>
+<td>Company state</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>false</td>
+<td>Company zip</td>
+</tr>
+<tr>
+<td>ANY_OTHER_FIELD</td>
+<td>false</td>
+<td>Any WinMAGI field in the CUSTOMER table</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-customer'>Delete a Customer</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomer</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Attempt to delete a customer</span>
+<span class="n">jsonCustomer</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthDeleteCustomer</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>Successful calls return the following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATUS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Unsuccessful calls return an empty string and assign details to objCustomer.LastErrorText</p>
+</blockquote>
+
+<p>Delete a WinMAGI customer.</p>
+
+<ul>
+<li><p>CUSTID is REQUIRED and must be UPPER CASE</p></li>
+<li><p>Deleting a customer is not permitted in most cases due to dependencies elsewhere in the system.</p></li>
+</ul>
+<h3 id='json-formatted-parameters-4'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>true</td>
+<td>Existing, Upper-cased string WinMAGI customer ID</td>
+</tr>
+</tbody></table>
+<h1 id='customer-addresses'>Customer Addresses</h1>
+<p>The customer object enables Customer and Customer Address actions that will run through the WinMAGI code for validation, 
+consistency, and concurrency with WinMAGI users.</p>
+<h2 id='generate-the-customer-object-2'>Generate the Customer object</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">objCustomer</span> <span class="o">=</span> <span class="n">objWinMAGI</span><span class="p">.</span><span class="n">mthGetCustomerObject</span><span class="p">()</span>
+
+<span class="c1">' Errors will return null, and a message will be present in objWinMAGI.LastErrorText</span>
+</code></pre>
+<p>Grab a customer object from the Customer Factory</p>
+<h2 id='get-customer-addresses'>Get Customer Addresses</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonAddresses</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Get all customer addresses for customer MAGI</span>
+<span class="n">jsonAddresses</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthFindAddress</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SHIPID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grand Rapids"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49546"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2660 Horizon Dr SE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTADDR table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SHIPID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Traverse City"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49686"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2211 North U.S. 31 North"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTADDR table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><pre class="highlight plaintext"><code>' Get specific customer address by City (case-insensitive)
+jsonAddresses = objCustomer.mthFindAddress("{""CUSTID"":""MAGI"", ""CITY"":""Grand Rapids""}")   
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SHIPID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grand Rapids"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49546"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2660 Horizon Dr SE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTADDR table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all customer addresses matching JSON-formatted criteria you provide.</p>
+
+<p>Fields MUST be UPPER CASE</p>
+<h3 id='json-formatted-parameters-5'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>false</td>
+<td>If supplied, return customers matching this CUSTID</td>
+</tr>
+<tr>
+<td>SHIPID</td>
+<td>false</td>
+<td>If supplied, return customers matching this SHIPID</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>false</td>
+<td>If supplied, return customers matching this Address</td>
+</tr>
+<tr>
+<td>CITY</td>
+<td>false</td>
+<td>If supplied, return customers matching this City</td>
+</tr>
+<tr>
+<td>ANY_OTHER_FIELD</td>
+<td>false</td>
+<td>Any WinMAGI field in the CUSTADDR table</td>
+</tr>
+</tbody></table>
+
+<p>Multiple fields in the query will return results matching ALL supplied values. </p>
+
+<aside class="success">
+Wildcards are supported. % for multiple characters and _ for single character.
 </aside>
+<h2 id='create-a-customer-address'>Create a Customer Address</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomer</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Create a customer address</span>
+<span class="n">jsonCustomer</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthAddAddress</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">, </span><span class="se">""</span><span class="s">SHIPID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">1</span><span class="se">""</span><span class="s">, 
+</span><span class="se">""</span><span class="s">COMPANY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI Software</span><span class="se">""</span><span class="s">,</span><span class="se">""</span><span class="s">CITY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">Grand Rapids</span><span class="se">""</span><span class="s">, </span><span class="se">""</span><span class="s">STATE</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MI</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>The above command returns the newly-created JSON-formatted customer address object structured like this if successful:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SHIPID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"COMPANY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI Software"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grand Rapids"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTOMER table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Unsuccessful attempts return an empty string and assign details to objCustomer.LastErrorText</p>
+</blockquote>
+
+<p>Create a WinMAGI customer address.</p>
+
+<ul>
+<li><p>Only one customer address can be created with each call to mthAddAddress</p></li>
+<li><p>Fields you may provide can be found in the WinMAGI System Dictionary for the CUSTADDR table on the Fields tab</p></li>
+<li><p>CUSTID must already exist and be UPPER CASE</p></li>
+<li><p>SHIPID must be unique and UPPER CASE</p></li>
+<li><p>Successful creation returns the new customer address object in JSON. Any other result indicates an error. Check LastErrorText.</p></li>
+<li><p>Fields MUST be UPPER CASE</p></li>
+<li><p>Validations from your WinMAGI System Dictionary will be evaluated</p></li>
+</ul>
+<h3 id='json-formatted-parameters-6'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>true</td>
+<td>Existing, upper-cased string customer ID</td>
+</tr>
+<tr>
+<td>SHIPID</td>
+<td>true</td>
+<td>Unique, upper-cased string customer address ID</td>
+</tr>
+<tr>
+<td>COMPANY</td>
+<td>false</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>false</td>
+<td>Company address</td>
+</tr>
+<tr>
+<td>CITY</td>
+<td>false</td>
+<td>Company city</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td>false</td>
+<td>Company state</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>false</td>
+<td>Company zip</td>
+</tr>
+<tr>
+<td>ANY_OTHER_FIELD</td>
+<td>false</td>
+<td>Any WinMAGI field in the CUSTADDR table</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-customer-address'>Update a Customer Address</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomer</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Update an existing customer</span>
+<span class="c1">' This code updates the CITY to Traverse City for customer MAGI address record "1"</span>
+<span class="n">jsonCustomer</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthUpdateAddress</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">, </span><span class="se">""</span><span class="s">SHIPID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">1</span><span class="se">""</span><span class="s">,</span><span class="se">""</span><span class="s">CITY</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">Traverse City</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>The above command returns the JSON-formatted customer address object structured like this if successful:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SHIPID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"COMPANY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI Software"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CITY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Traverse City"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ZIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ADDRESS"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"...All other fields in WinMAGI CUSTADDR table"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Unsuccessful attempts return an empty string and assign details to objCustomer.LastErrorText</p>
+</blockquote>
+
+<p>Update a WinMAGI customer.</p>
+
+<ul>
+<li><p>CUSTID is REQUIRED and must be UPPER CASE</p></li>
+<li><p>SHIPID is REQUIRED and must be UPPER CASE</p></li>
+<li><p>Only one customer address can be updated with each call</p></li>
+<li><p>Fields you may provide can be found in the WinMAGI System Dictionary for the CUSTADDR table on the Fields tab</p></li>
+<li><p>Successful update returns the complete customer address object in JSON format. Any other result indicates an error. Check LastErrorText.</p></li>
+<li><p>Fields MUST be UPPER CASE</p></li>
+<li><p>Validations from your WinMAGI System Dictionary will be evaluated</p></li>
+</ul>
+<h3 id='json-formatted-parameters-7'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>true</td>
+<td>Existing, Upper-cased string WinMAGI customer ID</td>
+</tr>
+<tr>
+<td>SHIPID</td>
+<td>true</td>
+<td>Existing, Upper-cased string WinMAGI customer address ID</td>
+</tr>
+<tr>
+<td>COMPANY</td>
+<td>false</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td>ADDRESS</td>
+<td>false</td>
+<td>Company address</td>
+</tr>
+<tr>
+<td>CITY</td>
+<td>false</td>
+<td>Company city</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td>false</td>
+<td>Company state</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>false</td>
+<td>Company zip</td>
+</tr>
+<tr>
+<td>ANY_OTHER_FIELD</td>
+<td>false</td>
+<td>Any WinMAGI field in the CUSTADDR table</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-customer-address'>Delete a Customer Address</h2><pre class="highlight vb tab-vb"><code><span class="k">Dim</span> <span class="nv">jsonCustomer</span> <span class="ow">As</span> <span class="kt">String</span>
+
+<span class="c1">' Attempt to delete a customer address</span>
+<span class="n">jsonCustomer</span> <span class="o">=</span> <span class="n">objCustomer</span><span class="p">.</span><span class="n">mthDeleteAddress</span><span class="p">(</span><span class="s">"{</span><span class="se">""</span><span class="s">CUSTID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">MAGI</span><span class="se">""</span><span class="s">, </span><span class="se">""</span><span class="s">SHIPID</span><span class="se">""</span><span class="s">:</span><span class="se">""</span><span class="s">1</span><span class="se">""</span><span class="s">}"</span><span class="p">)</span>   
+</code></pre>
+<blockquote>
+<p>Successful calls return the following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"CUSTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SHIPID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATUS"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Unsuccessful calls return an empty string and assign details to objCustomer.LastErrorText</p>
+</blockquote>
+
+<p>Delete a WinMAGI customer address.</p>
+
+<ul>
+<li><p>CUSTID is REQUIRED and must be UPPER CASE</p></li>
+<li><p>SHIPID is REQUIRED and must be UPPER CASE</p></li>
+</ul>
+<h3 id='json-formatted-parameters-8'>JSON-formatted Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CUSTID</td>
+<td>true</td>
+<td>Existing, Upper-cased string WinMAGI customer ID</td>
+</tr>
+<tr>
+<td>SHIPID</td>
+<td>true</td>
+<td>Existing, Upper-cased string WinMAGI customer address ID</td>
+</tr>
+</tbody></table>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -494,10 +1196,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="vb">vb</a>
           </div>
       </div>
     </div>
