@@ -22,6 +22,11 @@ of data in your WinMAGI database.
 
 If there is data or a function you would like exposed in the API, contact us at <a href="mailto:support@magi-erp.com">support@magi-erp.com</a> 
 
+<aside class="danger">
+This API requires knowledge of WinMAGI's System Dictionary. 
+You will frequently need to access the WinMAGI System Dictionary while developing your intergration.
+</aside>
+
 # Pre-requisites
 
 * MAGI License Server version 101 or later
@@ -186,8 +191,6 @@ jsonCustomers = objCustomer.mthFindCustomer("{""COMPANY"":""Walmart"",
 
 This endpoint retrieves all customers matching JSON-formatted criteria you provide.
 
-Fields MUST be UPPER CASE
-
 ### JSON-formatted Parameters
 
 Parameter | Required | Description
@@ -196,10 +199,16 @@ CUSTID | false | If supplied, return customers matching this CUSTID
 COMPANY | false | If supplied, return customers matching this Company 
 ANY_OTHER_FIELD | false | Any WinMAGI field in the CUSTOMER table
  
-Multiple fields in the query will return results matching ALL supplied values. 
+<aside class="success">
+Wildcards (% and _) are supported.
+</aside>
 
 <aside class="success">
-Wildcards are supported. % for multiple characters and _ for single character.
+Field values in lookups are not case sensitive
+</aside>
+
+<aside class="success">
+Multiple fields can be provided. Records that match all values provided will be returned.
 </aside>
 
 
@@ -413,8 +422,6 @@ jsonAddresses = objCustomer.mthFindAddress("{""CUSTID"":""MAGI"", ""CITY"":""Gra
 
 This endpoint retrieves all customer addresses matching JSON-formatted criteria you provide.
 
-Fields MUST be UPPER CASE
-
 ### JSON-formatted Parameters
 
 Parameter | Required | Description
@@ -424,11 +431,17 @@ SHIPID| false | If supplied, return customers matching this SHIPID
 ADDRESS | false | If supplied, return customers matching this Address
 CITY | false | If supplied, return customers matching this City
 ANY_OTHER_FIELD | false | Any WinMAGI field in the CUSTADDR table
- 
-Multiple fields in the query will return results matching ALL supplied values. 
 
 <aside class="success">
-Wildcards are supported. % for multiple characters and _ for single character.
+Wildcards (% and _) are supported.
+</aside>
+
+<aside class="success">
+Field values in lookups are not case sensitive
+</aside>
+
+<aside class="success">
+Multiple fields can be provided. Records that match all values provided will be returned.
 </aside>
 
 
@@ -583,45 +596,28 @@ CUSTID | true | Existing, Upper-cased string WinMAGI customer ID
 SHIPID | true | Existing, Upper-cased string WinMAGI customer address ID
 
 
+# Sales Orders
 
+The Sales Order object enables Sales Order actions that will run through the WinMAGI code for validation, 
+consistency, and concurrency with WinMAGI users.
 
+## Generate the Sales Order object
 
+```vb
+Dim objOrder = objWinMAGI.mthGetOrderObject()
 
-
-
-
-
-
-
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+' Errors will return null, and a message will be present in objWinMAGI.LastErrorText
 ```
 
-```python
-import kittn
+Grab a Sales Order object from the Sales Order Factory
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get Sales Orders
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+```vb
+Dim jsonOrders As String
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+' Get all sales orders for customer MAGI
+jsonOrders = objOrder.mthFindOrder("{""CUSTID"":""MAGI""}")   
 ```
 
 > The above command returns JSON structured like this:
@@ -629,140 +625,380 @@ let kittens = api.kittens.get();
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "CUSTID": "MAGI",
+    "OENO": "29387",
+    "COMPANY": "MAGI Software",
+    "ORDDATE": "2018-10-18",
+    "STATUS": "3",
+    "PONUM": "A11091",
+    "CITY": "Grand Rapids",
+    "STATE": "MI",
+    "ZIP": "49546",
+    "ADDRESS": "2660 Horizon Dr SE",
+    "...All other fields in WinMAGI COMAST table":""
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "CUSTID": "MAGI",
+    "OENO": "29323",
+    "COMPANY": "MAGI Software",
+    "ORDDATE": "2018-08-14",
+    "STATUS": "4",
+    "PONUM": "A54432",
+    "CITY": "Grand Rapids",
+    "STATE": "MI",
+    "ZIP": "49546",
+    "ADDRESS": "2660 Horizon Dr SE",
+    "...All other fields in WinMAGI COMAST table":""
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+```
+' Find sales order by PO (case-insensitive)
+jsonOrders = objCustomer.mthFindAddress("{""PONUM"":""A54432""}")   
+```
 
-### HTTP Request
+> The above command returns JSON structured like this:
 
-`GET http://example.com/api/kittens`
+```json
+[
+  {
+    "CUSTID": "MAGI",
+    "OENO": "29323",
+    "COMPANY": "MAGI Software",
+    "ORDDATE": "2018-08-14",
+    "STATUS": "4",
+    "PONUM": "A54432",
+    "CITY": "Grand Rapids",
+    "STATE": "MI",
+    "ZIP": "49546",
+    "ADDRESS": "2660 Horizon Dr SE",
+    "...All other fields in WinMAGI COMAST table":""
+  }
+]
+```
 
-### Query Parameters
+This endpoint retrieves all sales orders matching JSON-formatted criteria you provide.
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+### JSON-formatted Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+CUSTID | false | If supplied, return customers matching this CUSTID
+SHIPID| false | If supplied, return customers matching this SHIPID
+ADDRESS | false | If supplied, return customers matching this Address
+CITY | false | If supplied, return customers matching this City
+PONUM | false | If supplied, return customers matching this Po Number
+ANY_OTHER_FIELD | false | Any WinMAGI field in the CUSTADDR table
+ 
+Multiple fields in the query will return results matching ALL supplied values. 
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Wildcards (% and _) are supported.
 </aside>
 
-## Get a Specific Kitten
+<aside class="success">
+Field values in lookups are not case sensitive
+</aside>
 
-```ruby
-require 'kittn'
+<aside class="success">
+Multiple fields can be provided. Records that match all values provided will be returned.
+</aside>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+
+## Create a Sales Order
+
+```vb
+Dim jsonOrder As String
+
+' Create a sales order
+jsonOrder = objOrder.mthCreateOrder("{""CUSTID"":""MAGI"", ""SHIPID"":""1"", ""PREPAYAMT"": 77.28
+""ECORDERID"":""14423"", ""LINEITEMS"":[ {""PN"": ""A101"", ""QTYORD"": 4, ""CUSELL"": 19.32, ""TAXABLE"": false } ]}")   
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> The above command returns the newly-created JSON-formatted sales order object structured like this if successful:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "OENO": "22545",
+    "CUSTID": "MAGI",
+    "SHIPID": "1",
+    "ECORDERID": "14423",
+    "PREPAYAMT": 77.28,
+    "COMPANY": "MAGI Software",
+    "CITY": "Grand Rapids",
+    "STATE": "MI",
+    "ZIP": "",
+    "ADDRESS": "",
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> Unsuccessful attempts return an empty string and assign details to objOrder.LastErrorText
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Create a WinMAGI sales order.
 
-### HTTP Request
+* Only your custom "Z" fields and those listed below are supported.
 
-`GET http://example.com/kittens/<ID>`
+* You may provide a WinMAGI TaxCode (see TaxCode lookup section), or you may provide leave TAXCODE blank to provide 
+TAXES1-4 with TAXACCT1-4
 
-### URL Parameters
+* CUSTID must already exist and be UPPER CASE
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+* SHIPID must be unique and UPPER CASE if you choose to provide it.
 
-## Delete a Specific Kitten
+* ECORDERID is required and must be unique. It is intended to be the link to the source system's order.
 
-```ruby
-require 'kittn'
+* Successful creation returns the new sales order object in JSON format. Any other result indicates an error. Check LastErrorText.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+* Fields MUST be UPPER CASE
+
+* Validations from your WinMAGI System Dictionary will be evaluated
+
+<aside class="warning">
+Only your custom "Z" fields and select WinMAGI fields are supported for sales orders! Request additional fields as needed.
+</aside>
+
+<aside class="success">
+Status "2" (Approved) automatically becomes status "3" (Released) upon saving an order. Use Status "0" for quotes, 
+"1" for planned orders, and "3" to release orders.
+</aside>
+
+### JSON-formatted Parameters
+
+SALES ORDER:
+
+Parameter | Required | Description
+--------- | -------- | -----------
+CUSTID | true | Existing, upper-cased string customer ID
+SHIPID | false | Customer shipping address record ID (see Customer Address lookup section above)
+ECORDERID | true | Unique order ID from external source
+COMPANY  | false | Override company
+ADDRESS1 | false | Override Billing Address 1
+ADDRESS2 | false | Override Billing Address 2
+CITY     | false | Override Billing City
+STATE    | false | Override Billing State
+ZIP      | false | Override Billing Zip
+COUNTRY  | false | Override Billing Country
+EMAIL    | false | Override Billing Email
+PHONE    | false | Override Billing Phone
+SCOMPANY | false | Shipping Company (Only if SHIPID is empty)
+SCONTACT | false | Shipping Contact (Only if SHIPID is empty) 
+SPHONE | false | Shipping Phone (Only if SHIPID is empty) 
+SEMAIL | false | Shipping Email (Only if SHIPID is empty) 
+SADDRESS1 | false | Shipping Address 1 (Only if SHIPID is empty) 
+SADDRESS2 | false | Shipping Address 2 (Only if SHIPID is empty) 
+SCITY | false | Shipping City (Only if SHIPID is empty) 
+SSTATE | false | Shipping State (Only if SHIPID is empty) 
+SZIP | false | Shipping Zip (Only if SHIPID is empty) 
+SCOUNTRY | false | Shipping Country (Only if SHIPID is empty) 
+LINEITEMS | true | a JSON array of lineitems (see below)
+PONUM | depends | PO Number required depends on your WinMAGI settings
+ENTRYDATE | false | Date of order. Defaults to current date. 
+ORDDATE | false | Date of PO
+REQDATE | false | Customer's requested ship date
+SCHDDATE | false | Scheduled Ship Date
+STATUS | false | Order status. Defaults to "1" (Planned)
+TAXES | false | Tax total
+TAXES1 | false | Tax amount for account 1
+TAXES2 | false | Tax amount for account 2
+TAXES3 | false | Tax amount for account 3
+TAXES4 | false | Tax amount for account 4
+TAXFRT | false | Freight taxable?
+PREPAYMENT | false | Amount of prepayment
+CURRENCY | false | Currency code
+TOTAL | false | Order total. Used for automatic AR posting.
+DATE_PAID | false | Date of payment. Used for automatic AR posting.
+SHIPCODE | false | Shipping method from ShipVia table (see ShipVia lookup section below)
+HOLDCODE | false | Order hold code
+MDESC | false | Misc. charge description
+MACCTNO | false | Misc. charge Account
+MCHG | false | Misc. charge Amount
+TAXMISC | false | Misc. charge taxable?
+REMCUSTSVC | false | Customer service remarks
+REMARKS | false | Order remarks
+QOEREMARKS | false | Quote remarks
+SALESMAN | false | Salesman ID (see Salesman lookup section below)
+ZFIELDS | false | Any fields beginning with "Z" which is standard practice for custom fields
+    
+
+LINEITEMS:
+
+Parameter | Required | Description
+--------- | -------- | -----------
+PN | true | Existing, upper-cased string WinMAGI Part Number
+QTYORD | true | Quantity of item ordered
+CUSELL | true | Selling price per item in customer currency
+TAXABLE | false | Is item taxable?
+REMARKS | false | Item details. Defaults to WinMAGI Item Master remarks.
+ZFIELDS | false | Any fields beginning with "Z" which is standard practice for custom fields
+
+
+## Update a Sales Order
+
+<aside class="warning">
+Updating existing sales orders is not yet supported.
+</aside>
+
+
+## Delete a Sales Order
+
+<aside class="warning">
+Deleting existing sales orders is not yet supported.
+</aside>
+
+
+## Get Salesman
+
+```vb
+Dim jsonResult As String
+
+' Look up salesman ID
+jsonResult = objOrder.mthFindSalesman("{""NAME"":""Jim R Johnson""}")   
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> The above command returns the following JSON-formatted records:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "SALESMAN": "12",
+    "CODE": "ALL",
+    "NAME": "Jim R Johnson",
+    "ADDRESS1": "12 8th Ave.",
+    "PHONE": "616-555-4456",
+    "COMPANY": "MAGI Software",
+    "CITY": "Grand Rapids",
+    "STATE": "MI",
+    "ZIP": "",
+    "...All other fields in WinMAGI SALESMAN table":""
 }
 ```
 
-This endpoint deletes a specific kitten.
+Look up a salesman's ID for creating an order
 
-### HTTP Request
+Parameter | Required | Description
+--------- | -------- | -----------
+SALESMAN | false | Salesman Code
+CODE| false | Salesman commission code
+NAME | false | Salesman name
+CITY | false | Salesman city
+ZIP | false | Salesman ZIP
+PHONE | false | Salesman phone number 
+ANY_OTHER_FIELD | false | Any WinMAGI field in the SALESMAN table
 
-`DELETE http://example.com/kittens/<ID>`
+<aside class="success">
+Wildcards (% and _) are supported.
+</aside>
 
-### URL Parameters
+<aside class="success">
+Field values in lookups are not case sensitive
+</aside>
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+<aside class="success">
+Multiple fields can be provided. Records that match all values provided will be returned.
+</aside>
 
+## Get ShipVia
+
+```vb
+Dim jsonResult As String
+
+' Look up ShipVia records
+jsonResult = objOrder.mthFindShipVia("{""DESC"":""UPS Ground""}")   
+```
+
+> The above command returns the following JSON-formatted records:
+
+```json
+{
+    "SHIPCODE": "01",
+    "DESC": "UPS Ground",
+    "CARCONTACT": "Jen Smith",
+    "...All other fields in WinMAGI SHIPVIA table":""
+}
+```
+
+Look up a ShipVia ID for creating an order
+
+Parameter | Required | Description
+--------- | -------- | -----------
+SHIPCODE | false | ShipVia Code
+DESC | false | Description
+CARCONTACT | false | Carrier Contact
+ANY_OTHER_FIELD | false | Any WinMAGI field in the SHIPVIA table
+
+<aside class="success">
+Wildcards (% and _) are supported.
+</aside>
+
+<aside class="success">
+Field values in lookups are not case sensitive
+</aside>
+
+<aside class="success">
+Multiple fields can be provided. Records that match all values provided will be returned.
+</aside>
+
+
+## Get TaxCode
+
+```vb
+Dim jsonResult As String
+
+' Look up TaxRate records
+jsonResult = objOrder.mthFindTaxRate("{""ZIP"":""49546""}")   
+```
+
+> The above command returns the following JSON-formatted records:
+
+```json
+{
+    "TAXCODE": "01",
+    "DESC": "Michigan - Grand Rapids",
+    "ZIP": "49546",
+    "RATE1": 6.000,
+    "RATE2": 0.000,
+    "RATE3": 0.000,
+    "RATE4": 0.000,
+    "DESC1": "",
+    "DESC2": "",
+    "DESC3": "",
+    "DESC4": "",
+    "ACCT1": "",
+    "ACCT2": "",
+    "ACCT3": "",
+    "ACCT4": "",
+    "...All other fields in WinMAGI TAXRATE table":""
+}
+```
+
+Look up a TaxCode to automatically assign tax rates when creating an order
+
+Parameter | Required | Description
+--------- | -------- | -----------
+TAXCODE | false | TaxRate record ID
+DESC | false | Description
+STATE | false | State
+ZIP | false | Zip code
+COUNTRY | false | Country
+ANY_OTHER_FIELD | false | Any WinMAGI field in the TAXRATE table
+
+<aside class="success">
+Wildcards (% and _) are supported.
+</aside>
+
+<aside class="success">
+Field values in lookups are not case sensitive
+</aside>
+
+<aside class="success">
+Multiple fields can be provided. Records that match all values provided will be returned.
+</aside>
