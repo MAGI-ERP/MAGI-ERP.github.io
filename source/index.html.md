@@ -32,6 +32,17 @@ You will frequently need to access the WinMAGI System Dictionary while developin
 * MAGI License Server version 101 or later
 * WinMAGI build V821332 or later
 * Register the WinMAGI.exe
+* A valid WinMAGI license authorizing at least one of the supported entity types
+* An available concurrent user seat or limited user seat 
+
+### Currently supported entity types
+
+* Customers (includes addresses)
+* Sales Orders
+
+<aside class="success">
+Each entity type is licensed separately. 
+</aside>
 
 # Important information
 
