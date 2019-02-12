@@ -48,7 +48,7 @@ Each entity type is licensed separately.
 
 * Each instance of WinMAGI.ApiBase consumes a limited user.
 * Each instance of WinMAGI.ApiBase will be present in the MAGI License Server for management purposes.
-* Releasing the WinMAGI.ApiBase objects releases the consumed user seat.
+* Releasing the WinMAGI.ApiBase object will release the consumed user seat.
 * After installing a new WinMAGI build, it may be necessary to unregister and register the WinMAGI.exe again
 * Supported fields and validations, in most cases, come from your WinMAGI System Dictionary. 
     * It would be wise to create a wrapper that limits what third-party applications can do with the API.
@@ -70,7 +70,7 @@ You may unregister in the same way using the /unregserver flag.
 ' Initialize the object, connect with the license server, validate the license and available users
 ' objWinMAGI.InitOleObject("<path\to\winmagi>", "<DATA directory name>")
 
-' InitOleObject takes a few seconds as it communicates with the MAGI License Server asynchronously.
+' InitOleObject can take a few seconds as it communicates with the MAGI License Server asynchronously.
 
 Dim objWinMAGI = CreateObject("WinMAGI.ApiBase")
 Dim lnResult As Int16 = objWinMAGI.InitOleObject("c:\winmagi", "DATA")  
@@ -95,7 +95,7 @@ Authentication involves communication with your WinMAGI License Server to obtain
 and authorized modules.
 
 Upon successful login to the MAGI License Server, your API user will be shown in the concurrent users list. 
- 
+
 Integration with the license server enables visibility into the processes that may be accessing the WinMAGI data. 
 This is useful for having the ability to block API users from accessing the system WinMAGI maintenance and build upgrades.
 
