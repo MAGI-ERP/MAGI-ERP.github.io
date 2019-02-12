@@ -48,6 +48,7 @@ Each entity type is licensed separately.
 
 * Each instance of WinMAGI.ApiBase consumes a limited user.
 * Each instance of WinMAGI.ApiBase will be present in the MAGI License Server for management purposes.
+* Releasing the WinMAGI.ApiBase objects releases the consumed user seat.
 * After installing a new WinMAGI build, it may be necessary to unregister and register the WinMAGI.exe again
 * Supported fields and validations, in most cases, come from your WinMAGI System Dictionary. 
     * It would be wise to create a wrapper that limits what third-party applications can do with the API.
@@ -646,7 +647,15 @@ jsonOrders = objOrder.mthFindOrder("{""CUSTID"":""MAGI""}")
     "STATE": "MI",
     "ZIP": "49546",
     "ADDRESS": "2660 Horizon Dr SE",
-    "...All other fields in WinMAGI COMAST table":""
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
   },
   {
     "CUSTID": "MAGI",
@@ -659,7 +668,15 @@ jsonOrders = objOrder.mthFindOrder("{""CUSTID"":""MAGI""}")
     "STATE": "MI",
     "ZIP": "49546",
     "ADDRESS": "2660 Horizon Dr SE",
-    "...All other fields in WinMAGI COMAST table":""
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
   }
 ]
 ```
@@ -684,7 +701,15 @@ jsonOrders = objCustomer.mthFindAddress("{""PONUM"":""A54432""}")
     "STATE": "MI",
     "ZIP": "49546",
     "ADDRESS": "2660 Horizon Dr SE",
-    "...All other fields in WinMAGI COMAST table":""
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
   }
 ]
 ```
@@ -700,7 +725,7 @@ SHIPID| false | If supplied, return customers matching this SHIPID
 ADDRESS | false | If supplied, return customers matching this Address
 CITY | false | If supplied, return customers matching this City
 PONUM | false | If supplied, return customers matching this Po Number
-ANY_OTHER_FIELD | false | Any WinMAGI field in the CUSTADDR table
+ANY_OTHER_FIELD | false | Any WinMAGI field in the COMAST table
  
 Multiple fields in the query will return results matching ALL supplied values. 
 
