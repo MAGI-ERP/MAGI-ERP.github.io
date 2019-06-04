@@ -1,0 +1,8 @@
+run locally
+bundle exec middleman server
+find it on localhost:4567
+
+git add .
+git commit -m "commit notes"
+git push origin master
+my login is eklamer@magi-erp.com (for the magi-erp github.com account)
