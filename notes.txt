@@ -1,0 +1,4 @@
+run locally
+bundle exec middleman server
+find it on localhost:4567
+

@@ -1,5 +1,5 @@
 ---
-title: WinMAGI API Reference
+title: WinMAGI API DLL Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - vb
@@ -16,9 +16,20 @@ search: true
 
 # Introduction
 
-Welcome to the WinMAGI API! You can use our API to access your WinMAGI data from third-party applications. With this API, 
+Welcome to the WinMAGI API DLL documentation. You can use our DLL to access your WinMAGI data from third-party applications locally on your server. With this API, 
 you can create, update, and delete customers and shipping addresses, create sales orders, and query all sorts 
 of data in your WinMAGI database.
+
+<aside class="success">
+IMPORTANT: This is a local server DLL-based API. It is intended to allow your own yet-to-be-developed middleware to connect your cloud-based
+applications to your locally-hosted WinMAGI system. 
+
+The WinMAGI API is not cloud-based and is not accessible from outside
+your network.
+</aside>
+
+Another option is to have MAGI develop a direct integration with your cloud-based systems. This will allow greater flexibility and feature access and does not require you to have 
+and in-house or third-party developer to develop an integration for you.
 
 If there is data or a function you would like exposed in the API, contact us at <a href="mailto:support@magi-erp.com">support@magi-erp.com</a> 
 
@@ -30,10 +41,11 @@ You will frequently need to access the WinMAGI System Dictionary while developin
 # Pre-requisites
 
 * MAGI License Server version 101 or later
-* WinMAGI build V821332 or later
+* WinMAGI build V821495 or later
 * Register the WinMAGI.exe
 * A valid WinMAGI license authorizing at least one of the supported entity types
 * An available concurrent user seat or limited user seat 
+* A software developer to create the middleware that integrates your third-party applications with WinMAGI
 
 ### Currently supported entity types
 
