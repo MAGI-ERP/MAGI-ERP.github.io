@@ -6,3 +6,12 @@ git add .
 git commit -m "commit notes"
 git push origin master
 my login is eklamer@magi-erp.com (for the magi-erp github.com account)
+
+./deploy.sh
+git add .
+git commit -m "created deploy files"
+git push origin master
+
+log into github on the magi server to pull files
+take files into k:\development\magihelp
+index.html rename to api-001.htm and replace the one in magihelp\html
