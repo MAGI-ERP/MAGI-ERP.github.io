@@ -29,7 +29,7 @@ your network.
 </aside>
 
 Another option is to have MAGI develop a direct integration with your cloud-based systems. This will allow greater flexibility and feature access and does not require you to have 
-and in-house or third-party developer to develop an integration for you.
+an in-house or third-party developer to develop an integration for you.
 
 If there is data or a function you would like exposed in the API, contact us at <a href="mailto:support@magi-erp.com">support@magi-erp.com</a> 
 
