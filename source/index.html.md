@@ -60,6 +60,7 @@ Each entity type is licensed separately.
 
 * Each instance of WinMAGI.ApiBase consumes a limited user.
 * Each instance of WinMAGI.ApiBase will be present in the MAGI License Server for management purposes.
+* Releasing the WinMAGI.ApiBase object will release the consumed user seat.
 * After installing a new WinMAGI build, it may be necessary to unregister and register the WinMAGI.exe again
 * Supported fields and validations, in most cases, come from your WinMAGI System Dictionary. 
     * It would be wise to create a wrapper that limits what third-party applications can do with the API.
@@ -81,7 +82,7 @@ You may unregister in the same way using the /unregserver flag.
 ' Initialize the object, connect with the license server, validate the license and available users
 ' objWinMAGI.InitOleObject("<path\to\winmagi>", "<DATA directory name>")
 
-' InitOleObject takes a few seconds as it communicates with the MAGI License Server asynchronously.
+' InitOleObject can take a few seconds as it communicates with the MAGI License Server asynchronously.
 
 Dim objWinMAGI = CreateObject("WinMAGI.ApiBase")
 Dim lnResult As Int16 = objWinMAGI.InitOleObject("c:\winmagi", "DATA")  
@@ -106,7 +107,7 @@ Authentication involves communication with your WinMAGI License Server to obtain
 and authorized modules.
 
 Upon successful login to the MAGI License Server, your API user will be shown in the concurrent users list. 
- 
+
 Integration with the license server enables visibility into the processes that may be accessing the WinMAGI data. 
 This is useful for having the ability to block API users from accessing the system WinMAGI maintenance and build upgrades.
 
@@ -658,7 +659,15 @@ jsonOrders = objOrder.mthFindOrder("{""CUSTID"":""MAGI""}")
     "STATE": "MI",
     "ZIP": "49546",
     "ADDRESS": "2660 Horizon Dr SE",
-    "...All other fields in WinMAGI COMAST table":""
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
   },
   {
     "CUSTID": "MAGI",
@@ -671,7 +680,15 @@ jsonOrders = objOrder.mthFindOrder("{""CUSTID"":""MAGI""}")
     "STATE": "MI",
     "ZIP": "49546",
     "ADDRESS": "2660 Horizon Dr SE",
-    "...All other fields in WinMAGI COMAST table":""
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
   }
 ]
 ```
@@ -696,7 +713,15 @@ jsonOrders = objCustomer.mthFindAddress("{""PONUM"":""A54432""}")
     "STATE": "MI",
     "ZIP": "49546",
     "ADDRESS": "2660 Horizon Dr SE",
-    "...All other fields in WinMAGI COMAST table":""
+    "...All other fields in WinMAGI COMAST table":"",
+    "LINEITEMS": [
+      {
+          "PN": "A101",
+          "QTYORD": 4,
+          "CUSELL": 19.32,
+          "...All other fields in WinMAGI CODET table":""
+      }
+    ]
   }
 ]
 ```
@@ -712,7 +737,7 @@ SHIPID| false | If supplied, return customers matching this SHIPID
 ADDRESS | false | If supplied, return customers matching this Address
 CITY | false | If supplied, return customers matching this City
 PONUM | false | If supplied, return customers matching this Po Number
-ANY_OTHER_FIELD | false | Any WinMAGI field in the CUSTADDR table
+ANY_OTHER_FIELD | false | Any WinMAGI field in the COMAST table
  
 Multiple fields in the query will return results matching ALL supplied values. 
 
